@@ -22,4 +22,4 @@ Use this as a starting point to complete the WDD 330 team activity: the SleepOut
 
 ## Deploy Site
 
-This is the link to your "production" site: https://sleep-outside-team-19.netlify.app/
+This is the link to our "production" site: https://sleep-outside-team-19.netlify.app/
