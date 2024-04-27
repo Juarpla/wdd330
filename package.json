@@ -10,7 +10,6 @@
     "lint": "eslint *.js src/**/*.js",
     "format": "prettier --ignore-path ./.gitignore --write \"./**/*.{html,json,js,ts,css}\"",
     "test": "jest"
-    
   },
   "author": "Shane Thompson",
   "license": "ISC",
@@ -20,7 +19,7 @@
     "eslint-plugin-import": "^2.29.1",
     "jest": "^29.7.0",
     "prettier": "^3.2.5",
-    "vite": "^5.0.12"
+    "vite": "^5.2.10"
   },
   "babel": {
     "presets": [
