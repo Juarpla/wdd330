@@ -2,8 +2,14 @@ import { getLocalStorage } from "./utils.mjs";
 
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
-  const htmlItems = cartItems.map((item) => cartItemTemplate(item));
-  document.querySelector(".product-list").innerHTML = htmlItems.join("");
+  if (cartItems){
+    const htmlItems = cartItems.map((item) => cartItemTemplate(item));
+    document.querySelector(".product-list").innerHTML = htmlItems.join("");
+  } else {
+    document.querySelector(".products").textContent = "There are no items in the cart.";
+  }
+
+ 
 }
 
 function cartItemTemplate(item) {
@@ -26,3 +32,27 @@ function cartItemTemplate(item) {
 }
 
 renderCartContents();
+
+function getTotal (){
+  const cartItems = getLocalStorage("so-cart");
+  if (cartItems) {
+    const prices = [];
+      cartItems.map((item) => addToArray(item, prices));
+      console.log(prices);
+      let sum = 0;
+      for (let i = 0; i < prices.length; i++){
+        sum  += prices[i];
+      }
+      console.log(sum);
+      document.querySelector(".cart-total").textContent = `Total: $${sum}`;
+  } else {
+    document.querySelector(".cart-footer").style.display = "none";
+    console.log("success");
+  }
+}
+
+function addToArray(item, array){
+    array.push(item.FinalPrice);
+}
+
+getTotal();
