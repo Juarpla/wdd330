@@ -24,10 +24,24 @@ export function setClick(selector, callback) {
   });
   qs(selector).addEventListener("click", callback);
 }
-// get a parameter from the URL when we need to
+
 export function getParam(param) {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
-  const parameter = urlParams.get(param);
-  return parameter
+  const product = urlParams.get(param);
+  return product;
+}
+
+export function renderListWithTemplate(
+  templateFn,
+  parentElement,
+  list,
+  position = "afterbegin",
+  clear = false,
+) {
+  const renderedList = list.map(templateFn);
+  if (clear) {
+    parentElement.innerHTML = "";
+  }
+  parentElement.insertAdjacentHTML(position, renderedList.join(""));
 }
