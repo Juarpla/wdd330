@@ -22,6 +22,6 @@ export default class ProductListing {
     this.renderList(list);
   }
   renderList(list) {
-    renderListWithTemplate(productCardTemplate, list, this.listElement);
+    renderListWithTemplate(productCardTemplate,this.listElement,list);
   }
 }
