@@ -5,9 +5,9 @@ function renderCartContents() {
   if (cartItems && cartItems.length > 0 && Array.isArray(cartItems)) {
     const htmlItems = cartItems.map((item) => cartItemTemplate(item));
     document.querySelector(".product-list").innerHTML = htmlItems.join("");
-  }
-  else {
-    document.querySelector(".product-list").innerHTML = "<p>Your cart is currently empty. Have a look around and see if you can find anything you like!</p>";
+  } else {
+    document.querySelector(".product-list").innerHTML =
+      "<p>Your cart is currently empty. Have a look around and see if you can find anything you like!</p>";
   }
 }
 
@@ -31,3 +31,26 @@ function cartItemTemplate(item) {
 }
 
 renderCartContents();
+
+function getTotal() {
+  const cartItems = getLocalStorage("so-cart");
+  if (cartItems) {
+    const prices = [];
+    cartItems.map((item) => addToArray(item, prices));
+
+    let sum = 0;
+    for (let i = 0; i < prices.length; i++) {
+      sum += prices[i];
+    }
+
+    document.querySelector(".cart-total").textContent = `Total: $${sum}`;
+  } else {
+    document.querySelector(".cart-footer").style.display = "none";
+  }
+}
+
+function addToArray(item, array) {
+  array.push(item.FinalPrice);
+}
+
+getTotal();
