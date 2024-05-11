@@ -16,7 +16,7 @@ export function setLocalStorage(key, data) {
   let duplicateArray = [];
   const duplicateTent = dataArray.map((tent) => {
     if (data.Id == tent.Id) {
-      tent.FinalPrice += tent.FinalPrice;
+      tent.FinalPrice += tent.ListPrice;
       duplicateArray.push(tent);
     } else {
       duplicateArray.push(tent);
