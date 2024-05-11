@@ -1,6 +1,6 @@
 import { setLocalStorage } from "./utils.mjs";
 
-const productDetailsTemplate = product => `
+const productDetailsTemplate = (product) => `
     <section class="product-detail">
         <h3>${product.Brand.Name}</h3>
         <h2 class="divider">${product.NameWithoutBrand}</h2>
@@ -22,24 +22,24 @@ export default class ProductDetails {
     this.product = {};
     this.dataSource = dataSource;
   }
-    
+
   async init() {
     this.product = await this.dataSource.findProductById(this.productId);
-      this.renderProductDetails("main");
-    document.getElementById("addToCart")
+    this.renderProductDetails("main");
+    document
+      .getElementById("addToCart")
       .addEventListener("click", this.addToCart.bind(this));
   }
-    
+
   addToCart() {
-    setLocalStorage("so-cart", this.product)
+    setLocalStorage("so-cart", this.product);
   }
 
   renderProductDetails(selector) {
     const element = document.querySelector(selector);
     element.insertAdjacentHTML(
-        "afterBegin",
-        productDetailsTemplate(this.product)
+      "afterBegin",
+      productDetailsTemplate(this.product),
     );
   }
-    
 }

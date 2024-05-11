@@ -11,29 +11,24 @@ export function getLocalStorage(key) {
 }
 // save data to local storage
 export function setLocalStorage(key, data) {
-  const inStorage = getLocalStorage(key)
-  const dataArray = inStorage === null ? [] : inStorage
-  let duplicateArray=[]
-  const duplicateTent = dataArray.map(tent => {
-    if (data.Id == tent.Id){
-      tent.FinalPrice += tent.FinalPrice
-      duplicateArray.push(tent)
-
+  const inStorage = getLocalStorage(key);
+  const dataArray = inStorage === null ? [] : inStorage;
+  let duplicateArray = [];
+  const duplicateTent = dataArray.map((tent) => {
+    if (data.Id == tent.Id) {
+      tent.FinalPrice += tent.FinalPrice;
+      duplicateArray.push(tent);
     } else {
-      duplicateArray.push(tent)
+      duplicateArray.push(tent);
     }
-  })
-  const checkTentExist = duplicateArray.find((exist) => exist.Id === data.Id)
-  if (!checkTentExist){
-    duplicateArray.push(data)
+  });
+  const checkTentExist = duplicateArray.find((exist) => exist.Id === data.Id);
+  if (!checkTentExist) {
+    duplicateArray.push(data);
   }
-
-
 
   localStorage.setItem(key, JSON.stringify(duplicateArray));
 }
-
-
 
 // set a listener for both touchend and click
 export function setClick(selector, callback) {
@@ -67,12 +62,12 @@ export function renderListWithTemplate(
 
 export function renderWithTemplate(template, parent, data, callback) {
   parent.insertAdjacentHTML("afterbegin", template);
-  if(callback) {
+  if (callback) {
     callback(data);
   }
 }
 
-export const loadTemplate  = async (path) => {
+export const loadTemplate = async (path) => {
   const res = await fetch(path);
   const template = await res.text();
   return template;
@@ -86,4 +81,4 @@ export const loadHeaderFooter = async () => {
 
   renderWithTemplate(headerTemplate, headerElement);
   renderWithTemplate(footerTemplate, footerElement);
-}
+};
