@@ -202,6 +202,28 @@ button {
   grid-column: 3;
 }
 
+/* Categories */
+.categories {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  padding: 30px 20px;
+  column-gap: 1em;
+  height: 180px;
+}
+
+.categories a {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+
+.category-img {
+  width: 100%;
+  height: 120px;
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
