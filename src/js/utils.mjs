@@ -13,9 +13,28 @@ export function getLocalStorage(key) {
 export function setLocalStorage(key, data) {
   const inStorage = getLocalStorage(key)
   const dataArray = inStorage === null ? [] : inStorage
-  const newDataArray =  dataArray.concat(data)
-  localStorage.setItem(key, JSON.stringify(newDataArray));
+  let duplicateArray=[]
+  const duplicateTent = dataArray.map(tent => {
+    if (data.Id == tent.Id){
+      tent.FinalPrice += tent.FinalPrice
+      duplicateArray.push(tent)
+
+    } else {
+      duplicateArray.push(tent)
+    }
+  })
+  const checkTentExist = duplicateArray.find((exist) => exist.Id === data.Id)
+  if (!checkTentExist){
+    duplicateArray.push(data)
+  }
+
+
+
+  localStorage.setItem(key, JSON.stringify(duplicateArray));
 }
+
+
+
 // set a listener for both touchend and click
 export function setClick(selector, callback) {
   qs(selector).addEventListener("touchend", (event) => {
