@@ -242,3 +242,12 @@ footer {
   font-size: var(--small-font);
   padding: 1em;
 }
+
+.sort-options label {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.sort-options option {
+  font-size: 1.5rem;
+}
