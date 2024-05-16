@@ -272,3 +272,12 @@ footer {
   animation: shake 0.5s;
   fill: gray;
 }
+
+.sort-options label {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.sort-options option {
+  font-size: 1.5rem;
+}
