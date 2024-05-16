@@ -1,4 +1,5 @@
 import { setLocalStorage } from "./utils.mjs";
+import { animateCartIcon } from "./animations";
 
 const productDetailsTemplate = (product) => `
     <section class="product-detail">
@@ -33,6 +34,7 @@ export default class ProductDetails {
 
   addToCart() {
     setLocalStorage("so-cart", this.product);
+    animateCartIcon();
   }
 
   renderProductDetails(selector) {
