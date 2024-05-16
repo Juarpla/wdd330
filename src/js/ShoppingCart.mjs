@@ -2,13 +2,13 @@ import { getLocalStorage } from "./utils.mjs";
 
 function cartItemTemplate(item) {
   return `<li class="cart-card divider">
-  <a href="#" class="cart-card__image">
+  <a href="../product_pages/index.html?product=${item.Id}" class="cart-card__image">
     <img
       src="${item.Images.PrimaryMedium}"
       alt="${item.Name}"
     />
   </a>
-  <a href="#">
+  <a href="../product_pages/index.html?product=${item.Id}">
     <h2 class="card__name">${item.Name}</h2>
   </a>
   <button type="button" class="remove"><span data-id="${item.Id}">X</span></button>
