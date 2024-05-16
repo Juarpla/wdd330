@@ -5,14 +5,14 @@ class Alert {
     const alertList = document.createElement("section");
     alertList.classList.add("alert-list");
 
-    alerts.forEach(alert => {
+    alerts.forEach((alert) => {
       const alertMessage = document.createElement("p");
       alertMessage.textContent = alert.message;
       alertMessage.style.backgroundColor = alert.background;
       alertMessage.style.color = alert.color;
       alertMessage.style.padding = "0.5rem";
-      alertMessage.style.fontSize = "2rem"; 
-      alertMessage.style.textAlign = "center"; 
+      alertMessage.style.fontSize = "2rem";
+      alertMessage.style.textAlign = "center";
       alertList.appendChild(alertMessage);
     });
 
