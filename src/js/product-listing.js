@@ -1,3 +1,4 @@
+import Alert from "./Alert";
 import ProductData from "./ProductData.mjs";
 import ProductList from "./ProductList.mjs";
 import { loadHeaderFooter, getParam } from "./utils.mjs";
@@ -10,3 +11,7 @@ const element = document.querySelector(".product-list");
 const listing = new ProductList(category, dataSource, element);
 
 listing.init();
+
+// Render the alerts
+const alert = new Alert();
+alert.render();
