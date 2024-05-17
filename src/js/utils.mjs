@@ -1,3 +1,5 @@
+import { getTotalNumberItems } from "./ShoppingCart.mjs";
+
 // wrapper for querySelector...returns matching element
 export function qs(selector, parent = document) {
   return parent.querySelector(selector);
@@ -79,6 +81,24 @@ export const loadHeaderFooter = async () => {
   const footerTemplate = await loadTemplate("../partials/footer.html");
   const footerElement = document.querySelector("#main-footer");
 
-  renderWithTemplate(headerTemplate, headerElement);
-  renderWithTemplate(footerTemplate, footerElement);
+// Check to see if the header/footer elements exist. If so, it clears and loads them, else it just loads them. 
+// This allows us to dynamically update the cart superscript when adding an item.
+  if (headerElement) {
+    headerElement.innerHTML = "";
+    renderWithTemplate(headerTemplate, headerElement);
+  }
+  else {
+    renderWithTemplate(headerTemplate, headerElement);
+  }
+
+  if (footerElement) {
+    footerElement.innerHTML = "";
+    renderWithTemplate(footerTemplate, footerElement);
+  }
+  else {
+    renderWithTemplate(footerTemplate, footerElement);
+  }
+
+// Display the number of items in the cart as a superscript above the cart icon.
+  document.querySelector("#cart-count").innerHTML = `${getTotalNumberItems()}`;
 };
