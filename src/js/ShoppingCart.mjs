@@ -67,9 +67,13 @@ export function getTotal() {
 
 export function getTotalNumberItems() {
   const cartItems = getLocalStorage("so-cart");
-  let numberItems = 0;
-  for (let item of cartItems) {
-    numberItems += item.FinalPrice / item.ListPrice;
+  if (cartItems != null) {
+    let numberItems = 0;
+    for (let item of cartItems) {
+      numberItems += item.FinalPrice / item.ListPrice;
+    }
+    return numberItems;
+  } else {
+    return 0;
   }
-  return numberItems;
 }
