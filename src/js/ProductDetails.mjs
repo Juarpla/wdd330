@@ -1,6 +1,5 @@
-import { setLocalStorage } from "./utils.mjs";
+import { loadHeaderFooter, setLocalStorage, alertMessage } from "./utils.mjs";
 import { animateCartIcon } from "./animations";
-import { loadHeaderFooter } from "./utils.mjs";
 
 const productDetailsTemplate = (product) => `
     <section class="product-detail">
@@ -36,6 +35,7 @@ export default class ProductDetails {
   addToCart() {
     setLocalStorage("so-cart", this.product);
     animateCartIcon();
+    alertMessage(`${this.product.NameWithoutBrand} added to cart!`);
 
 // Reload the header/footer to dynamically update the cart superscript.
     loadHeaderFooter();

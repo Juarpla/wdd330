@@ -354,3 +354,21 @@ footer {
   padding: 2px 5px;
   font-size: 14px;
 }
+
+.alert {
+  background-color: rgb(255, 210, 192);
+  border: solid 1px var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5em;
+  margin: 5px 5px;
+}
+
+.alert > p {
+  margin: 0;
+}
+
+.alert span {
+  cursor: pointer;
+}
