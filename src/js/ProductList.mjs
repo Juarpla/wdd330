@@ -17,12 +17,35 @@ export default class ProductList {
     this.dataSource = dataSource;
     this.listElement = listElement;
   }
+
   async init() {
     const list = await this.dataSource.getData(this.category);
     this.renderList(list);
     document.querySelector(".title").innerHTML = this.category;
+    const sortSelect = document.getElementById("sort-select");
+
+     sortSelect.addEventListener("change", (event) =>
+      this.handleSortChange(event, list)
+    );
   }
+
+  handleSortChange(event, list) {
+    const sortOption = event.target.value;
+    if (sortOption === "name") {
+      list.sort((a, b) => a.Name.localeCompare(b.Name));
+    } else if (sortOption === "price") {
+      list.sort((a, b) => a.FinalPrice - b.FinalPrice);
+    }
+    this.renderList(list);
+  }
+
   renderList(list) {
-    renderListWithTemplate(productCardTemplate,this.listElement,list);
+    renderListWithTemplate(
+      productCardTemplate,
+      this.listElement,
+      list,
+      "afterbegin",
+      true,
+    );
   }
 }

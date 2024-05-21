@@ -335,6 +335,15 @@ footer {
   fill: gray;
 }
 
+.sort-options label {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.sort-options option {
+  font-size: 1.5rem;
+}
+
 #cart-count {
   position: absolute;
   top: 2px;
