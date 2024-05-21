@@ -207,6 +207,7 @@ button {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   padding: 30px 20px;
+  margin-bottom: 20px;
   column-gap: 1em;
   height: 180px;
 }
@@ -224,10 +225,71 @@ button {
   height: 120px;
 }
 
+.simple-button {
+  text-align: center;
+}
+
+.simple-button a {
+  display: inline-block;
+  background: var(--secondary-color);
+  color: white;
+  padding: 10px 25px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
 .remove {
   grid-column: 4/5;
   grid-row: 1/3;
   padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.checkout-form {
+  padding: 0.5em;
+}
+
+.checkout-form fieldset {
+  border: 1px solid var(--primary-color);
+  padding: 13px 18px 15px;
+  margin-bottom: 10px;
+}
+
+.checkout-form label {
+  display: block;
+}
+
+.checkout-form input {
+  width: 100%;
+  font-size: 1.2em;
+  border: solid 1px grey;
+}
+
+.checkout-form input:required {
+  border-right: solid 8px red;
+}
+
+.checkout-form input:required:valid {
+  border-right: solid 8px green;
+}
+
+.checkout-summary > ul {
+  padding-left: 0;
+  list-style-type: none;
+}
+
+.checkout-summary li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.checkout-summary input {
+  width: 25%;
+  font-size: 1em;
+}
+
+#checkoutSubmit {
   border-radius: 5px;
 }
 
@@ -280,4 +342,15 @@ footer {
 
 .sort-options option {
   font-size: 1.5rem;
+}
+
+#cart-count {
+  position: absolute;
+  top: 2px;
+  right: -8px;
+  background-color: green;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 5px;
+  font-size: 14px;
 }

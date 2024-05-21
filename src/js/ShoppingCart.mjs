@@ -14,7 +14,7 @@ function cartItemTemplate(item) {
   <button type="button" class="remove"><span data-id="${item.Id}">X</span></button>
   <p class="cart-card__color">${item.Colors[0].ColorName}</p>
   <p class="cart-card__quantity">qty: ${item.FinalPrice / item.ListPrice}</p>
-  <p class="cart-card__price">$${item.FinalPrice}</p>
+  <p class="cart-card__price">$${item.FinalPrice.toFixed(2)}</p>
 </li>`;
 }
 
@@ -30,7 +30,9 @@ export default class ShoppingCart {
       document.querySelector(this.parentSelector).innerHTML =
         htmlItems.join("");
       assignRemoveItemButtons(cartItems);
+      document.querySelector(".cart-total").textContent = `Total: $${getTotal().toFixed(2)}`;      
     } else {
+      document.querySelector(".cart-footer").style.display = "none";
       document.querySelector(this.parentSelector).innerHTML =
         "<p>Your cart is currently empty. Have a look around and see if you can find anything you like!</p>";
     }
@@ -54,4 +56,20 @@ function assignRemoveItemButtons(cartItems) {
       location.reload();
     });
   }
+}
+
+export function getTotal() {
+  const cartItems = getLocalStorage("so-cart");
+    let total = 0;
+    cartItems.map((item) => total += item.FinalPrice);
+    return total;
+}
+
+export function getTotalNumberItems() {
+  const cartItems = getLocalStorage("so-cart");
+  let numberItems = 0;
+  for (let item of cartItems) {
+    numberItems += item.FinalPrice / item.ListPrice;
+  }
+  return numberItems;
 }
