@@ -11,7 +11,11 @@ function cartItemTemplate(item) {
   <a href="../product_pages/index.html?product=${item.Id}">
     <h2 class="card__name">${item.Name}</h2>
   </a>
-  <button type="button" class="remove"><span data-id="${item.Id}">X</span></button>
+  <section class="buttonBox" data-id="${item.Id}">
+    <button type="button" class="remove"><span>X</span></button>
+    <button type="button" class="more-less"><span>-</span></button>
+    <button type="button" class="more-less"><span>+</span></button>
+  </section>
   <p class="cart-card__color">${item.Colors[0].ColorName}</p>
   <p class="cart-card__quantity">qty: ${item.FinalPrice / item.ListPrice}</p>
   <p class="cart-card__price">$${item.FinalPrice.toFixed(2)}</p>
@@ -29,7 +33,7 @@ export default class ShoppingCart {
       const htmlItems = cartItems.map((item) => cartItemTemplate(item));
       document.querySelector(this.parentSelector).innerHTML =
         htmlItems.join("");
-      assignRemoveItemButtons(cartItems);
+      assignItemButtons(cartItems);
       document.querySelector(".cart-total").textContent = `Total: $${getTotal().toFixed(2)}`;      
     } else {
       document.querySelector(".cart-footer").style.display = "none";
@@ -39,21 +43,46 @@ export default class ShoppingCart {
   }
 }
 
-function assignRemoveItemButtons(cartItems) {
-  let removeButtons = document.getElementsByClassName("remove");
-  for (const element of removeButtons) {
-    let button = element;
-    let product_id = button.children[0].getAttribute("data-id");
+function assignItemButtons(cartItems) {
+  let boxes = document.getElementsByClassName("buttonBox");
+  for (const buttons of boxes) {
+    let product_id = buttons.getAttribute("data-id");
 
     // Remove items function
-    button.addEventListener("click", function () {
+    buttons.children[0].addEventListener("click", function () {
       if (cartItems != null) {
         const filtered = cartItems.filter((item) => item.Id !== product_id);
         localStorage.setItem("so-cart", JSON.stringify(filtered));
+        location.reload();
       } else {
         console.log("empty");
       }
-      location.reload();
+    });
+
+    // Decrease quantity by 1
+    buttons.children[1].addEventListener("click", function () {
+      if (cartItems != null) {
+        let item = cartItems.find((item) => item.Id === product_id);
+        if (item.FinalPrice > item.ListPrice) {
+          item.FinalPrice -= item.ListPrice;
+          localStorage.setItem("so-cart", JSON.stringify(cartItems));
+          location.reload();
+        } 
+      } else {
+        console.log("empty");
+      }
+    });
+
+    // Increase quantity by 1 
+    buttons.children[2].addEventListener("click", function () {
+      if (cartItems != null) {
+        let item = cartItems.find((item) => item.Id === product_id);
+        item.FinalPrice += item.ListPrice;
+        localStorage.setItem("so-cart", JSON.stringify(cartItems));
+        location.reload();
+      } else {
+        console.log("empty");
+      }
     });
   }
 }
