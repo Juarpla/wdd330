@@ -1,4 +1,4 @@
-import { loadHeaderFooter, setLocalStorage, alertMessage } from "./utils.mjs";
+import { loadHeaderFooter, setLocalStorage, alertMessage, getDiscount, getDiscountPercentage } from "./utils.mjs";
 import { animateCartIcon } from "./animations";
 
 const productDetailsTemplate = (product) => `
@@ -6,7 +6,8 @@ const productDetailsTemplate = (product) => `
         <h3>${product.Brand.Name}</h3>
         <h2 class="divider">${product.NameWithoutBrand}</h2>
         <img class="divider" src="${product.Images.PrimaryLarge}" alt="${product.NameWithoutBrand}"/>
-        <p class="product-card__price">$${product.FinalPrice}</p>
+        <p class="discount-flag discount-details">-${getDiscountPercentage(product)}%</p>
+        <p class="product-card__price">$${product.FinalPrice} | <span class="discount-price">${getDiscount(product)}</span></p>
         <p class="product__color">${product.Colors[0].ColorName}</p>
         <p class="product__description">
         ${product.DescriptionHtmlSimple}

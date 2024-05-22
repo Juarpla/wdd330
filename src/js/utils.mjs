@@ -123,3 +123,17 @@ export function removeAllAlerts() {
   const alerts = document.querySelectorAll(".alert");
   alerts.forEach((alert) => document.querySelector("main").removeChild(alert));
 }
+
+export function getDiscount(product) {
+  if (product.SuggestedRetailPrice > product.ListPrice) {
+    return `$${product.SuggestedRetailPrice}`;
+  }
+}
+
+export function getDiscountPercentage(product) {
+  let price = product.SuggestedRetailPrice;
+  let priceDiscounted = product.ListPrice;
+  if ( price > priceDiscounted) {
+    return Math.round((100 * (price - priceDiscounted)) / price);
+  } 
+}
