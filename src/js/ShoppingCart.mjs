@@ -17,7 +17,7 @@ function cartItemTemplate(item) {
     <button type="button" class="more-less"><span>+</span></button>
   </section>
   <p class="cart-card__color">${item.Colors[0].ColorName}</p>
-  <p class="cart-card__quantity">qty: ${item.FinalPrice / item.ListPrice}</p>
+  <p class="cart-card__quantity">qty: ${Math.round(item.FinalPrice / item.ListPrice)}</p>
   <p class="cart-card__price">$${item.FinalPrice.toFixed(2)}</p>
 </li>`;
 }
@@ -101,7 +101,7 @@ export function getTotalNumberItems() {
     for (let item of cartItems) {
       numberItems += item.FinalPrice / item.ListPrice;
     }
-    return numberItems;
+    return Math.round(numberItems);
   } else {
     return 0;
   }
